@@ -8,19 +8,19 @@ static void		handle_error(char *str)
 
 void	init_signal(int sig, void (*handler)(int, siginfo_t *, void *))
 {
-	struct sigaction	s_sigaction;
+	struct sigaction	sa;
 
-	s_sigaction.sa_flags = SA_SIGINFO;
-	s_sigaction.sa_sigaction = handler;
-	sigemptyset(&s_sigaction.sa_mask);
+	sa.sa_flags = SA_SIGINFO;
+	sa.sa_sigaction = handler;
+	sigemptyset(&sa.sa_mask);
 	if (sig == SIGUSR1)
 	{
-		if (sigaction(SIGUSR1, &s_sigaction, NULL) == -1)
+		if (sigaction(SIGUSR1, &sa, NULL) == -1)
 			handle_error("Signal (SIGUSR1)");
 	}
 	if (sig == SIGUSR2)
 	{
-		if (sigaction(SIGUSR2, &s_sigaction, NULL) == -1)
+		if (sigaction(SIGUSR2, &sa, NULL) == -1)
 			handle_error("Signal (SIGUSR2)");
 	}
 }

@@ -3,7 +3,7 @@
 static void		handle_error(char *str)
 {
 	printf("Error type: %s\n", str);
-	exit(1);
+	exit(EXIT_FAILURE);
 }
 
 void	init_signal(int sig, void (*handler)(int, siginfo_t *, void *))

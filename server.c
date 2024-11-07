@@ -5,14 +5,13 @@ void	handle_signal(int signum, siginfo_t *info, void *context)
 	static int		bit;
 	static int		curr_char;
 
+	printf("bit: %d", bit);
 	(void)context;
 	if (signum == SIGUSR1)
 		curr_char |= (0x01 << bit);
 	bit++;
 	if (bit == 8)
 	{
-		if (curr_char == 0)
-			printf("\n");
 		printf("%c", curr_char);
 		bit = 0;
 		curr_char = 0;

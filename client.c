@@ -3,9 +3,11 @@
 void	confirm_message(int signum)
 {
 	if (signum == SIGUSR1)
-		printf("SUCCESS: message was successfuly recieved by server");
-	else if (signum != SIGUSR2)
-		printf("HMM: something went wrong");
+		printf("SUCCESS: sent 1 to server\n");
+	else if (signum == SIGUSR2)
+		printf("SUCCESS: sent 0 to server\n");
+	else 
+		printf("ERROR: wierd");
 }
 
 void	send_bits(char c, pid_t server_pid)
@@ -15,6 +17,7 @@ void	send_bits(char c, pid_t server_pid)
 	bit = 0;
 	while (bit < 8)
 	{
+		// printf("%c", (c << bit));
 		if (c & (0x01 << bit))
 			kill(server_pid, SIGUSR1);
 		else

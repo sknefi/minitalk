@@ -1,11 +1,16 @@
 #include "minitalk.h"
-#include <stdio.h>
 
-int     main(void)
+void	handle_signal(int signum, siginfo_t *info, void *context)
 {
-    pid_t   pid;
+	// Simple signal handler for demonstration
+	(void)context;  // Avoid unused parameter warning
+	printf("Received signal %d from PID: %d\n", signum, info->si_pid);
+}
 
-    pid = getpid();
-    printf("Server PID: [%d]", pid);
-    return (0);
+int		main(void)
+{
+	init_signal(SIGUSR1, &handle_signal);
+	init_signal(SIGUSR2, &handle_signal);
+	printf("Server PID: [%d]\n", (int)getpid());
+	return (0);
 }

@@ -1,18 +1,32 @@
 #include "minitalk.h"
 
+void print_binary(int n)
+{
+    for (int i = 7; i >= 0; i--)
+    {
+        if (n & (1 << i))
+            printf("1");
+        else
+            printf("0");
+    }
+}
+
 void	handle_signal(int signum, siginfo_t *info, void *context)
 {
 	static int		bit;
 	static int		curr_char;
 
-	printf("bit: %d", bit);
 	(void)context;
 	if (signum == SIGUSR1)
 		curr_char |= (0x01 << bit);
+    // printf("----------\n");
+	// print_binary(curr_char);
+    // printf("\n");
 	bit++;
+    // printf("Received signal: %d, bit: %d, num %d\n", signum, bit, curr_char);
 	if (bit == 8)
 	{
-		printf("%c", curr_char);
+		printf("%c\n", curr_char);
 		bit = 0;
 		curr_char = 0;
 	}

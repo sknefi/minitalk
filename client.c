@@ -23,7 +23,7 @@ void	send_bits(char c, pid_t server_pid)
 		else
 			kill(server_pid, SIGUSR2);
 		bit++;
-		usleep(500);
+		usleep(400);
 	}
 }
 

@@ -6,7 +6,7 @@ LIBFT_SRC = ft_memset ft_bzero ft_memcpy ft_memmove ft_memchr ft_memcmp \
             ft_strjoin ft_strtrim ft_split ft_itoa ft_strmapi ft_putchar_fd \
             ft_putstr_fd ft_putendl_fd ft_putnbr_fd ft_striteri \
             ft_lstnew ft_lstadd_front ft_lstsize ft_lstlast ft_lstadd_back \
-            ft_lstdelone ft_lstclear ft_lstiter ft_lstmap main \
+            ft_lstdelone ft_lstclear ft_lstiter ft_lstmap \
 
 # Source files for libft
 LIBFT_SRCS = $(addsuffix .c, $(LIBFT_SRC))

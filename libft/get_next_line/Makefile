@@ -1,36 +1,34 @@
-# Source, object, and header files
-SRC     = get_next_line_bonus.c get_next_line_utils_bonus.c
-OBJ     = $(SRC:.c=.o)
-HEADER  = get_next_line_bonus.h
+# get_next_line Makefile
 
-# Output executable name
-NAME    = libgnl.a
-CC      = cc
-FLAGS   = -Wall -Wextra -Werror
-RM      = rm -f
+# Source files
+SRC = get_next_line_bonus.c get_next_line_utils_bonus.c
+OBJ = $(SRC:.c=.o)
 
-# Default rule to build the executable
+# Output library
+NAME = libgnl.a
+
+# Compiler and flags
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+
+# Default target
 all: $(NAME)
 
-# Link object files into the gnl.out executable
+# Build static library
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
-	chmod +x $(NAME)
+	ar rcs $(NAME) $(OBJ)
 
-# Rule to compile .c files into .o files
-%.o: %.c $(HEADER)
-	$(CC) $(FLAGS) -c $< -o $@
+# Compile object files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean object files
+# Clean up
 clean:
-	$(RM) $(OBJ)
+	rm -f $(OBJ)
 
-# Full cleanup, including the executable
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
 
-# Rebuild everything
 re: fclean all
 
-# Declare phony targets
 .PHONY: all clean fclean re

@@ -2,7 +2,7 @@
 
 static void		handle_error(char *str)
 {
-	printf("Error type: %s\n", str);
+	ft_printf("Error type: %s\n", str);
 	exit(EXIT_FAILURE);
 }
 

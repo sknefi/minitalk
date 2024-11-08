@@ -26,7 +26,7 @@ void	handle_signal(int signum, siginfo_t *info, void *context)
 	if (bit == 8)
 	{
     	// printf("Received signal: %d, bit: %d, num %d\n", signum, bit, curr_char);
-		ft_printf("%c\n", curr_char);
+		ft_printf("%c", curr_char);
 		bit = 0;
 		curr_char = 0;
 	}
@@ -40,7 +40,7 @@ int		main(void)
 {
 	init_signal(SIGUSR1, &handle_signal);
 	init_signal(SIGUSR2, &handle_signal);
-	printf("Server PID: [%d]\n\n", (int)getpid());
+	ft_printf("Server PID: [%d]\n\n", (int)getpid());
 	while (1)
 		pause();
 	return (EXIT_SUCCESS);

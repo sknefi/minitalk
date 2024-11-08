@@ -1,6 +1,6 @@
 #include "minitalk.h"
 
-static void		handle_error(char *str)
+static void	handle_error(char *str)
 {
 	ft_printf("Error type: %s\n", str);
 	exit(EXIT_FAILURE);

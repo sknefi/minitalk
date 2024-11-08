@@ -72,7 +72,7 @@ void	read_file(int fd, char **str_start, char *tmp, int *err)
 			return ;
 	}
 }
- 
+
 char	*get_next_line_bonus(int fd)
 {
 	int				err;

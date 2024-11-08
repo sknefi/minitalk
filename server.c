@@ -25,8 +25,8 @@ void	handle_signal(int signum, siginfo_t *info, void *context)
 	bit++;
 	if (bit == 8)
 	{
-    	printf("Received signal: %d, bit: %d, num %d\n", signum, bit, curr_char);
-		printf("%c", curr_char);
+    	// printf("Received signal: %d, bit: %d, num %d\n", signum, bit, curr_char);
+		ft_printf("%c\n", curr_char);
 		bit = 0;
 		curr_char = 0;
 	}

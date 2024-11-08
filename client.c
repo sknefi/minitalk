@@ -44,8 +44,7 @@ int	main(int argc, char *argv[])
 	pid_t	server_pid;
 
 	if (argc != 3)
-		return (printf("error, invalid arguments\n"),
-			printf("valid format> ./minitalk <server_pid> <message>"),
+		return (printf("valid format> ./minitalk <server_pid> <message>"),
 			EXIT_SUCCESS);
 	server_pid = ft_atoi(argv[1]);
 	if (server_pid <= 0 || server_pid > MAX_PID)

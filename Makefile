@@ -25,6 +25,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 # Targets
 
+
 # Build both client and server executables
 all: $(LIBFTPRINTF) $(NAME_CLIENT) $(NAME_SERVER)
 

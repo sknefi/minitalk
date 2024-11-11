@@ -1,5 +1,5 @@
 # Source files for client and server
-SRC_CLIENT = client ./libft/ft_atoi ./libft/ft_isdigit
+SRC_CLIENT = client
 SRC_SERVER = server utils
 
 # Convert source file names to .c files

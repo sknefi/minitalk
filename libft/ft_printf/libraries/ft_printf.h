@@ -21,11 +21,12 @@
 # define HEX "0123456789abcdef"
 # define UP_HEX "0123456789ABCDEF"
 
-int		ft_print_char(char c);
-int		ft_print_string(char *str);
-int		ft_print_number(long n, int base, char *symbols);
-int		ft_print_pointer(
-			unsigned long long ptr, unsigned long long base, char *symbols);
 int		ft_printf(const char *str, ...);
+
+int		ftp_print_char(char c);
+int		ftp_print_string(char *str);
+int		ftp_print_number(long n, int base, char *symbols);
+int		ftp_print_pointer(
+			unsigned long long ptr, unsigned long long base, char *symbols);
 
 #endif

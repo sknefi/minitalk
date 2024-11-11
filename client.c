@@ -36,6 +36,7 @@ void	send_str(char *str, pid_t server_pid)
 		send_bits(str[i], server_pid);
 		i++;
 	}
+	send_bits('\0', server_pid);
 }
 
 int	main(int argc, char *argv[])

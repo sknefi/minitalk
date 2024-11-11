@@ -4,6 +4,7 @@ void	handle_signal(int signum, siginfo_t *info, void *context)
 {
 	static int		bit;
 	static int		curr_char;
+	// static char		*curr_str;
 
 	(void)context;
 	if (signum == SIGUSR1)

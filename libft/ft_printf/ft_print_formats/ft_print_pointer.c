@@ -21,15 +21,15 @@ static int	not_null_ptr(
 		return (write(1, "(nil)", 5));
 	count = 0;
 	if (ptr < base)
-		return (ft_print_char(symbols[ptr]));
+		return (ftp_print_char(symbols[ptr]));
 	else
 	{
-		count = ft_print_number(ptr / base, base, symbols);
-		return (count + ft_print_number(ptr % base, base, symbols));
+		count = ftp_print_number(ptr / base, base, symbols);
+		return (count + ftp_print_number(ptr % base, base, symbols));
 	}
 }
 
-int	ft_print_pointer(
+int	ftp_print_pointer(
 		unsigned long long ptr, unsigned long long base, char *symbols)
 {
 	if (!ptr)

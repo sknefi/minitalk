@@ -1,34 +1,37 @@
-# get_next_line Makefile
+NAME 		= libgnl.a
 
-# Source files
-SRC = get_next_line_bonus.c get_next_line_utils_bonus.c
-OBJ = $(SRC:.c=.o)
+CC 			= cc
+CFLAGS 		= -Wall -Wextra -Werror
 
-# Output library
-NAME = libgnl.a
+SRCS		= get_next_line_bonus.c get_next_line_utils_bonus.c
+OBJS		= $(SRCS:.c=.o)
 
-# Compiler and flags
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+HEADER		= get_next_line_bonus.h
+
+TEST_NAME	= test.out
+
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
+	ranlib $(NAME)
+
+# Compiling object files with header dependency
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Default target
 all: $(NAME)
 
-# Build static library
-$(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
-
-# Compile object files
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+# Rule to build the test program
+test: $(NAME) $(TEST_OBJ)
+	$(CC) $(CFLAGS) $(TEST_OBJ) -L. -lgnl -o $(TEST_NAME)
 
 # Clean up
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(TEST_NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.phony: all clean fclean re

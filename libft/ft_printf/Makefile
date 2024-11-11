@@ -1,38 +1,39 @@
 NAME		= libftprintf.a
-CC			= gcc
+
+CC			= cc
 CFLAGS		= -Wall -Werror -Wextra
 
-###
-MAIN		= ft_printf.c		
+SRCS		= ft_printf.c \
+			  ft_print_formats/ft_print_char.c \
+			  ft_print_formats/ft_print_number.c \
+			  ft_print_formats/ft_print_pointer.c \
+			  ft_print_formats/ft_print_string.c \
 
-F_FORMATS	= ft_print_formats/
+OBJS		= $(SRCS:.c=.o)
+HEADER		= ./libraries/ft_printf.h
 
-FORMATS		= ft_print_char.c		\
-				ft_print_number.c	\
-				ft_print_pointer.c	\
-				ft_print_string.c
+TEST_NAME	= test.out
 
-F_LIBS		= libraries/
+$(NAME): $(OBJS)
+	ar rc $(NAME) $(OBJS)
+	ranlib $(NAME)
 
-LIBS		= ft_printf.h
-
-SOURCES		= $(addprefix $(F_FORMATS), $(FORMATS)) $(MAIN)
-
-OBJECTS		= $(SOURCES:.c=.o)
-###
-
-$(NAME) : $(OBJECTS)
-	ar crs $(NAME) $(OBJECTS)
+# Compiling object files with header dependency
+%.o: %.c $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
-clean:
-	rm -f $(OBJECTS)
+# Rule to build the test program
+test: $(NAME) $(TEST_OBJ)
+	$(CC) $(CFLAGS) $(TEST_OBJ) -L. -lftprintf -o $(TEST_NAME)
 
-fclean:
-	rm -f $(NAME) $(OBJECTS)
+clean:
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME) $(TEST_NAME)
 
 re: fclean all
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+.phony: all clean fclean re

@@ -12,7 +12,7 @@
 
 #include "../libraries/ft_printf.h"
 
-int	ft_print_string(char *str)
+int	ftp_print_string(char *str)
 {
 	int	count;
 

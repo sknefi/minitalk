@@ -10,5 +10,6 @@
 # endif
 
 void	init_signal(int sig, void (*handler)(int, siginfo_t *, void *));
+char	*mt_ft_strjoin(char *s1, char *s2);
 
 #endif

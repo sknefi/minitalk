@@ -3,8 +3,8 @@
 void	handle_signal(int signum, siginfo_t *info, void *context)
 {
 	static int		bit;
-	static int		curr_char;
-	// static char		*curr_str;
+	static char		curr_char;
+	static char		*curr_str;
 
 	(void)context;
 	if (signum == SIGUSR1)
@@ -12,7 +12,12 @@ void	handle_signal(int signum, siginfo_t *info, void *context)
 	bit++;
 	if (bit == 8)
 	{
-		ft_printf("%c", curr_char);
+		curr_str = mt_ft_strjoin(curr_str, &curr_char);
+		if (curr_char == '\0')
+		{
+			ft_printf("%s", curr_str);
+			curr_str = NULL;
+		}
 		bit = 0;
 		curr_char = 0;
 	}

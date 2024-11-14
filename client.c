@@ -7,7 +7,7 @@ void	confirm_message(int signum)
 	else if (signum == SIGUSR2)
 		ft_printf("SUCCESS: sent 0 to server\n");
 	else
-		ft_printf("ERROR: wierd");
+		ft_printf("ERROR: someother signal was sent");
 }
 
 void	send_bits(char c, pid_t server_pid)

@@ -3,11 +3,14 @@
 void	confirm_message(int signum)
 {
 	if (signum == SIGUSR1)
-		ft_printf("SUCCESS: sent 1 to server\n");
+		ft_printf("");
+		// ft_printf("SUCCESS: sent 1 to server\n");
 	else if (signum == SIGUSR2)
-		ft_printf("SUCCESS: sent 0 to server\n");
+		ft_printf("");
+		// ft_printf("SUCCESS: sent 0 to server\n");
 	else
-		ft_printf("ERROR: someother signal was sent");
+		ft_printf("");
+		// ft_printf("ERROR: someother signal was sent");
 }
 
 void	send_bits(char c, pid_t server_pid)
@@ -22,7 +25,7 @@ void	send_bits(char c, pid_t server_pid)
 		else
 			kill(server_pid, SIGUSR2);
 		bit++;
-		usleep(400);
+		usleep(800);
 	}
 }
 
@@ -33,8 +36,10 @@ void	send_str(char *str, pid_t server_pid)
 	i = 0;
 	while (str[i])
 	{
+		ft_printf("Sending: %c\n", str[i]);
 		send_bits(str[i], server_pid);
 		i++;
+		usleep(800);
 	}
 	send_bits('\0', server_pid);
 }
@@ -44,7 +49,7 @@ int	main(int argc, char *argv[])
 	pid_t	server_pid;
 
 	if (argc != 3)
-		return (ft_printf("valid format> ./minitalk <server_pid> <message>"),
+		return (ft_printf("valid format> ./minitalk <server_pid> <message>\n"),
 			EXIT_SUCCESS);
 	server_pid = ft_atoi(argv[1]);
 	if (server_pid <= 0 || server_pid > MAX_PID)

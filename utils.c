@@ -28,10 +28,9 @@ char	*mt_ft_strjoin(char *s1, char *s2)
 
 	if (s1 == NULL)
 	{
-		s1 = (char *)ft_calloc(1, sizeof(char));
+		s1 = ft_strdup("");
 		if (!s1)
-			ft_error("Malloc failed - ft_strjoin[1]\n");
-		s1[0] = '\0';
+			return (NULL);
 	}
 	if (!s2)
 		return (NULL);
@@ -40,7 +39,7 @@ char	*mt_ft_strjoin(char *s1, char *s2)
 	if (!str)
 	{
 		free(s1);
-		ft_error("Malloc failed - ft_strjoin[2]\n");
+		return (NULL);
 	}
 	ft_strlcpy(str, s1, ft_strlen(s1) + 1);
 	ft_strlcpy(str + ft_strlen(s1), s2, ft_strlen(s2) + 1);

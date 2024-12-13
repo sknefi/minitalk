@@ -10,6 +10,6 @@
 # endif
 
 void	init_signal(int sig, void (*handler)(int, siginfo_t *, void *));
-char	*mt_ft_strjoin(char *s1, char *s2);
+char	*add_byte_to_string(char *curr_str, char c);
 
 #endif

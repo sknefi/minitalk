@@ -19,30 +19,35 @@ void	init_signal(int sig, void (*handler)(int, siginfo_t *, void *))
 	}
 }
 
-// same function as used in gnl project
-// s1 is current string
-// s2 will always be only 1 character (8bits from signals)
-char	*mt_ft_strjoin(char *s1, char *s2)
+/**
+ * @brief Concatenates two strings into a new string.
+ * @param s1 The first string.
+ * @param s2 I will pass only one character at a time
+*/
+char	*add_byte_to_string(char *curr_str, char c)
 {
 	char	*str;
+	size_t	len_curr_str;
 
-	if (s1 == NULL)
+	if (!curr_str)
 	{
-		s1 = ft_strdup("");
-		if (!s1)
+		str = (char *)ft_calloc(2, sizeof(char));
+		if (!str)
 			return (NULL);
+		str[0] = (unsigned char) c;
+		str[1] = '\0';
+		return (str);
 	}
-	if (!s2)
-		return (NULL);
-	str = (char *)ft_calloc(
-			(ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
+	len_curr_str = ft_strlen(curr_str);
+	str = (char *)ft_calloc(len_curr_str + 2, sizeof(char));
 	if (!str)
 	{
-		free(s1);
+		free(curr_str);
 		return (NULL);
 	}
-	ft_strlcpy(str, s1, ft_strlen(s1) + 1);
-	ft_strlcpy(str + ft_strlen(s1), s2, ft_strlen(s2) + 1);
-	free(s1);
+	ft_strlcpy(str, curr_str, len_curr_str + 2);
+	str[len_curr_str] = c;
+	str[len_curr_str + 1] = '\0';
+	free(curr_str);
 	return (str);
 }

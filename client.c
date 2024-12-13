@@ -3,30 +3,36 @@
 void	confirm_message(int signum)
 {
 	if (signum == SIGUSR1)
-		ft_printf("");
-		// ft_printf("SUCCESS: sent 1 to server\n");
+		// ft_printf("");
+		ft_printf("1");
 	else if (signum == SIGUSR2)
-		ft_printf("");
-		// ft_printf("SUCCESS: sent 0 to server\n");
+		// ft_printf("");
+		ft_printf("0");
 	else
-		ft_printf("");
-		// ft_printf("ERROR: someother signal was sent");
+		// ft_printf("");
+		ft_printf("ERROR: someother signal was sent");
 }
 
-void	send_bits(char c, pid_t server_pid)
+void	send_bit(char c, pid_t server_pid)
 {
-	unsigned int	bit;
+	int		bit;
+	char	curr_char;
 
 	bit = 0;
+	curr_char = 0;
 	while (bit < 8)
 	{
 		if (c & (0x01 << bit))
+		{
 			kill(server_pid, SIGUSR1);
+			curr_char |= (1 << bit);
+		}
 		else
 			kill(server_pid, SIGUSR2);
 		bit++;
 		usleep(800);
 	}
+	ft_printf("\nSent: %c\n", curr_char);
 }
 
 void	send_str(char *str, pid_t server_pid)
@@ -36,12 +42,11 @@ void	send_str(char *str, pid_t server_pid)
 	i = 0;
 	while (str[i])
 	{
-		ft_printf("Sending: %c\n", str[i]);
-		send_bits(str[i], server_pid);
+		send_bit(str[i], server_pid);
 		i++;
 		usleep(800);
 	}
-	send_bits('\0', server_pid);
+	send_bit('\0', server_pid);
 }
 
 int	main(int argc, char *argv[])

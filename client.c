@@ -1,16 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fkarika <fkarika@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/16 16:21:47 by fkarika           #+#    #+#             */
+/*   Updated: 2024/12/16 16:47:41 by fkarika          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 void	confirm_message(int signum)
 {
 	if (signum == SIGUSR1)
-		// ft_printf("");
-		ft_printf("1");
+		ft_printf("SUCCESS: sent 1 to server\n");
 	else if (signum == SIGUSR2)
-		// ft_printf("");
-		ft_printf("0");
-	else
-		// ft_printf("");
-		ft_printf("ERROR: someother signal was sent");
+		ft_printf("SUCCESS: sent 0 to server\n");
 }
 
 void	send_bit(char c, pid_t server_pid)
@@ -30,7 +37,7 @@ void	send_bit(char c, pid_t server_pid)
 		else
 			kill(server_pid, SIGUSR2);
 		bit++;
-		usleep(800);
+		usleep(1600);
 	}
 	ft_printf("\nSent: %c\n", curr_char);
 }

@@ -1,12 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fkarika <fkarika@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/16 16:21:59 by fkarika           #+#    #+#             */
+/*   Updated: 2024/12/16 17:40:25 by fkarika          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
-
-// volatile sig_atomic_t server_running = 1;
-
-// void handle_exit_signal(int signum)
-// {
-//     (void)signum;
-//     server_running = 0;
-// }
 
 void	handle_signal(int signum, siginfo_t *info, void *context)
 {
@@ -32,20 +36,15 @@ void	handle_signal(int signum, siginfo_t *info, void *context)
 		bit = 0;
 		curr_char = 0;
 	}
-	if (signum == SIGUSR1)
-		kill(info->si_pid, SIGUSR1);
-	else if (signum == SIGUSR2)
-		kill(info->si_pid, SIGUSR2);
+	send_ack(signum, info);
 }
 
 int	main(void)
 {
 	init_signal(SIGUSR1, &handle_signal);
 	init_signal(SIGUSR2, &handle_signal);
-    // signal(SIGHUP, handle_exit_signal);
 	ft_printf("Server PID: [%d]\n\n", (int)getpid());
-	// while (server_running)
 	while (1)
-		pause();
+		usleep(600);
 	return (EXIT_SUCCESS);
 }

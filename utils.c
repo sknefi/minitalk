@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fkarika <fkarika@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/16 16:21:54 by fkarika           #+#    #+#             */
+/*   Updated: 2024/12/16 17:00:09 by fkarika          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 void	init_signal(int sig, void (*handler)(int, siginfo_t *, void *))
@@ -50,4 +62,12 @@ char	*add_byte_to_string(char *curr_str, char c)
 	str[len_curr_str + 1] = '\0';
 	free(curr_str);
 	return (str);
+}
+
+void	send_ack(int signum, siginfo_t *info)
+{
+	if (signum == SIGUSR1)
+		kill(info->si_pid, SIGUSR1);
+	else if (signum == SIGUSR2)
+		kill(info->si_pid, SIGUSR2);
 }

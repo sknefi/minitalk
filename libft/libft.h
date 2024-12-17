@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkarika <filip.karika1@gmail.com>          +#+  +:+       +#+        */
+/*   By: fkarika <fkarika@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:28:31 by fkarika           #+#    #+#             */
-/*   Updated: 2024/10/01 13:56:42 by fkarika          ###   ########.fr       */
+/*   Updated: 2024/12/17 13:30:43 by fkarika          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char	*get_next_line(int fd);
 int		ft_printf(const char *str, ...);
 void	ft_error(char *str);
+int		ft_atoii(const char *str, int *check_flag);
 
 #endif

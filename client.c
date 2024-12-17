@@ -6,7 +6,7 @@
 /*   By: fkarika <fkarika@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 16:21:47 by fkarika           #+#    #+#             */
-/*   Updated: 2024/12/16 16:47:41 by fkarika          ###   ########.fr       */
+/*   Updated: 2024/12/17 13:33:19 by fkarika          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	send_bit(char c, pid_t server_pid)
 		bit++;
 		usleep(1600);
 	}
-	ft_printf("\nSent: %c\n", curr_char);
+	ft_printf("Sent: %c\n\n", curr_char);
 }
 
 void	send_str(char *str, pid_t server_pid)
@@ -58,14 +58,16 @@ void	send_str(char *str, pid_t server_pid)
 
 int	main(int argc, char *argv[])
 {
+	int		err;
 	pid_t	server_pid;
 
 	if (argc != 3)
 		return (ft_printf("valid format> ./minitalk <server_pid> <message>\n"),
 			EXIT_SUCCESS);
-	server_pid = ft_atoi(argv[1]);
-	if (server_pid <= 0 || server_pid > MAX_PID)
-		ft_printf("Invalid PID\n", EXIT_SUCCESS);
+	err = 0;
+	server_pid = ft_atoii(argv[1], &err);
+	if (err == -1 || server_pid <= 0 || server_pid > MAX_PID)
+		return (ft_printf("Invalid PID\n"), EXIT_SUCCESS);
 	signal(SIGUSR1, confirm_message);
 	signal(SIGUSR2, confirm_message);
 	send_str(argv[2], server_pid);

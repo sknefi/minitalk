@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkarika <fkarika@student.42.fr>            +#+  +:+       +#+        */
+/*   By: filip <filip@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 16:21:59 by fkarika           #+#    #+#             */
-/*   Updated: 2024/12/16 17:40:25 by fkarika          ###   ########.fr       */
+/*   Updated: 2025/01/12 17:46:51 by filip            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(void)
 	init_signal(SIGUSR1, &handle_signal);
 	init_signal(SIGUSR2, &handle_signal);
 	ft_printf("Server PID: [%d]\n\n", (int)getpid());
-	while (1)
-		usleep(600);
+	while (usleep(600))
+		;
 	return (EXIT_SUCCESS);
 }

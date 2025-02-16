@@ -26,3 +26,49 @@ Handles null-terminated strings, marking the end of the message.
 ## Key Notes
 + Ensure proper delays (usleep) in the client to avoid signal congestion
 + Validate server PID and input format before sending a message
+
+## Usage
+Git clone the repository with
+```
+git clone git@github.com:sknefi/minitalk.git
+```
+
+Build application (`server` and `client`)
+```
+make
+```
+
+In one terminal start `server` 
+```
+./server
+```
+You should see `PID` (Process ID) of `server` application, copy it
+
+Open new terminal and send data from client to server with `[PID]` of server
+```
+./client [PID] [Message]
+```
+
+## Example
+### Start server
+```
+./server
+Server PID: [36254]
+```
+
+### Send data from client to server
+```
+./client 36254 "Milestone 2 - Minitalk project"
+```
+
+![Showcase](./photos/example.png)<br>
+
+## Don't forget to stop server
+Otherwise...
+![Showcase](./photos/infinite_while_loop1.png)<br>
+When sending huge amount of data, usleep() can fail sometimes, and infinite loop could occur
+![Showcase](./photos/infinite_while_loop2.png)<br>
+Just make sure you `CRTL+C` or `SIGKILL` signal
+```
+kill -9 [PID]
+```
